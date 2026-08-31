@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swaad Ghar | Homemade Indian Goodness</title>
+
+    <style>
+        :root {
+            --brown: #452617;
+            --dark-brown: #2b160e;
+            --sage: #789451;
+            --light-sage: #edf3e6;
+            --cream: #fdf8f2;
+            --gold: #e9b44c;
+            --white: #ffffff;
+            --text: #333333;
+            --muted: #777777;
+            --border: #eadfd2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: Georgia, serif;
+        }
+
+        /* Fixed Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 17px 6%;
+            background: rgba(69, 38, 23, 0.98);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.16);
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .cart-btn,
+        .mobile-menu-btn {
+            border: none;
+            cursor: pointer;
+        }
+
+        .cart-btn {
+            background: var(--sage);
+            color: var(--white);
+            padding: 11px 19px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            color: white;
+            font-size: 1.7rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 690px;
+            padding: 150px 9% 80px;
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            color: var(--white);
+            background:
+                linear-gradient(90deg, rgba(43, 22, 14, 0.97), rgba(69, 38, 23, 0.72)),
+                url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1600&q=85")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 580px;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            margin-bottom: 16px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #f7eee4;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark-brown);
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: #f5c765;
+        }
+
+        .hero-badge {
+            margin-top: 30px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            color: #fff6e8;
+            font-size: 0.9rem;
+        }
+
+        /* General Sections */
+        section {
+            padding: 80px 8%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            color: var(--brown);
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* Categories */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 210px;
+            overflow: hidden;
+            border-radius: 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(69, 38, 23, 0.12);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: end;
+            padding: 20px;
+            color: white;
+            background: linear-gradient(transparent, rgba(43, 22, 14, 0.9));
+        }
+
+        .category-overlay h3 {
+            font-size: 1.2rem;
+        }
+
+        /* Products */
+        #shop {
+            background: var(--light-sage);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--sage);
+            background: transparent;
+            color: var(--brown);
+            padding: 10px 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--sage);
+            color: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            overflow: hidden;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 7px 22px rgba(69, 38, 23, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 14px 30px rgba(69, 38, 23, 0.16);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-content h3 {
+            color: var(--brown);
+            margin-bottom: 8px;
+        }
+
+        .product-content p {
+            min-height: 42px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .price {
+            color: var(--sage);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            border: none;
+            background: var(--brown);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: var(--sage);
+        }
+
+        /* Trust Strip */
+        .trust-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 35px 8%;
+            background: var(--brown);
+            color: white;
+            text-align: center;
+        }
+
+        .trust-strip div {
+            padding: 10px;
+        }
+
+        .trust-strip strong {
+            display: block;
+            color: var(--gold);
+            font-family: Georgia, serif;
+            font-size: 1.1rem;
+            margin-bottom: 7px;
+        }
+
+        .trust-strip span {
+            color: #f4e9dc;
+            font-size: 0.85rem;
+        }
+
+        /* FAQ */
+        .faq-wrapper {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(69, 38, 23, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            border: none;
+            background: white;
+            color: var(--brown);
+            padding: 22px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            font-family: Georgia, serif;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .faq-question span {
+            color: var(--sage);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 25px 22px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 8% 30px;
+            color: white;
+            background: var(--dark-brown);
+            text-align: center;
+        }
+
+        footer h2 {
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        footer p {
+            color: #eadfd5;
+            margin: 8px 0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+            border-radius: 20px;
+            background: white;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 22px;
+            color: var(--brown);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .modal-box h2 {
+            color: var(--brown);
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item small {
+            display: block;
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .remove-btn {
+            border: none;
+            background: #f6e8e4;
+            color: #a33d2d;
+            padding: 6px 9px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .payment-title {
+            margin-top: 25px;
+            color: var(--brown);
+        }
+
+        .payment-option {
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            color: var(--brown);
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: var(--sage);
+            background: var(--light-sage);
+        }
+
+        .upi-box {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .upi-box input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .pay-btn,
+        .wa-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            margin-top: 12px;
+            border-radius: 28px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .pay-btn {
+            background: var(--gold);
+            color: var(--brown);
+        }
+
+        .wa-btn {
+            background: #25d366;
+            color: white;
+        }
+
+        @media (max-width: 1050px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                flex-direction: column;
+                background: var(--brown);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 620px;
+                padding: 130px 7% 70px;
+            }
+
+            .category-grid,
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trust-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .logo {
+                font-size: 1.45rem;
+            }
+
+            .cart-btn {
+                padding: 9px 12px;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-strip {
+                grid-template-columns: 1fr 1fr;
+                padding: 25px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">Swaad Ghar</div>
+
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="cart-btn" onclick="openCart()">
+            Cart (<span id="cartCount">0</span>)
+        </button>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">Made with love in Pune</div>
+                <h1>Real Food.<br>Real Ingredients.<br>Real Taste.</h1>
+                <p>
+                    Traditional homemade delicacies prepared in small batches
+                    using authentic recipes and wholesome ingredients.
+                </p>
+                <a href="#shop" class="btn">Explore Our Collection</a>
+
+                <div class="hero-badge">
+                    <span>✓ Freshly Prepared</span>
+                    <span>✓ No Artificial Preservatives</span>
+                    <span>✓ Homemade Quality</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="categories">
+            <div class="section-heading">
+                <h2>Shop by Category</h2>
+                <p>Discover something delicious for every occasion.</p>
+            </div>
+
+            <div class="category-grid">
+                <div class="category-card" onclick="filterProducts('Snacks')">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=85" alt="Traditional snacks">
+                    <div class="category-overlay"><h3>Traditional Snacks</h3></div>
+                </div>
+
+                <div class="category-card" onclick="filterProducts('Sweets')">
+                    <img src="https://images.unsplash.com/photo-1605196560544-5f6c5d6a3b3a?auto=format&fit=crop&w=700&q=85" alt="Indian sweets">
+                    <div class="category-overlay"><h3>Indian Sweets</h3></div>
+                </div>
+
+                <div class="category-card" onclick="filterProducts('Pickles')">
+                    <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=700&q=85" alt="Homemade pickles">
+                    <div class="category-overlay"><h3>Pickles</h3></div>
+                </div>
+
+                <div class="category-card" onclick="filterProducts('Spices')">
+                    <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=85" alt="Indian spices">
+                    <div class="category-overlay"><h3>Spices & Masalas</h3></div>
+                </div>
+
+                <div class="category-card" onclick="filterProducts('Ghee')">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=85" alt="Pure desi ghee">
+                    <div class="category-overlay"><h3>Ghee & Pantry</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shop">
+            <div class="section-heading">
+                <h2>Our Bestselling Products</h2>
+                <p>Handcrafted favourites delivered fresh to your doorstep.</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('All')">All Products</button>
+                <button class="filter-btn" onclick="filterProducts('Snacks')">Snacks</button>
+                <button class="filter-btn" onclick="filterProducts('Sweets')">Sweets</button>
+                <button class="filter-btn" onclick="filterProducts('Pickles')">Pickles</button>
+                <button class="filter-btn" onclick="filterProducts('Spices')">Spices</button>
+                <button class="filter-btn" onclick="filterProducts('Ghee')">Ghee</button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <div class="trust-strip">
+            <div>
+                <strong>Small Batches</strong>
+                <span>Prepared fresh with care</span>
+            </div>
+            <div>
+                <strong>Authentic Recipes</strong>
+                <span>Traditional family flavours</span>
+            </div>
+            <div>
+                <strong>Premium Ingredients</strong>
+                <span>Wholesome and carefully sourced</span>
+            </div>
+            <div>
+                <strong>Fast Dispatch</strong>
+                <span>Freshness packed with love</span>
+            </div>
+        </div>
+
+        <section id="faq">
+            <div class="section-heading">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know before placing your order.</p>
+            </div>
+
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do you use artificial preservatives?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        No. Our products are made using carefully selected ingredients
+                        and traditional preparation methods. We do not add artificial
+                        preservatives or unnecessary additives.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How long does delivery take?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Orders are generally dispatched within 1–2 working days.
+                        Delivery usually takes 2–5 working days depending on your location.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        How should I store the products?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Store products in a cool, dry place. After opening, keep pickles,
+                        ghee and sweets tightly sealed. Refrigeration may be recommended
+                        for selected products.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Do you accept UPI and WhatsApp Pay?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. You can select UPI or WhatsApp Pay during checkout.
+                        The payment buttons in this demo are ready to connect to your
+                        preferred payment gateway or merchant UPI ID.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Can I place an order through WhatsApp?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes. Add your products to the cart and choose “Order on WhatsApp”.
+                        Your selected items and total amount will be prepared in a message.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <h2>Swaad Ghar</h2>
+        <p>Authentic homemade goodness from our kitchen to yours.</p>
+        <p>WhatsApp: +91 91234 56789</p>
+        <p>© 2026 Swaad Ghar. All rights reserved.</p>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-box">
+            <span class="close" onclick="closeCart()">&times;</span>
+
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+
+            <h3 style="margin-top: 22px; color: var(--brown);">
+                Total: ₹<span id="cartTotal">0</span>
+            </h3>
+
+            <h3 class="payment-title">Choose Payment Method</h3>
+
+            <button class="payment-option" onclick="selectPayment('upi')">
+                📱 UPI Payment
+                <small>Google Pay, PhonePe, Paytm and other UPI apps</small>
+            </button>
+
+            <div class="upi-box" id="upiBox">
+                <input type="text" placeholder="Enter your UPI ID e.g. name@upi">
+            </div>
+
+            <button class="payment-option" onclick="selectPayment('whatsapp')">
+                💬 WhatsApp Pay
+                <small>Pay securely using WhatsApp Pay</small>
+            </button>
+
+            <button class="pay-btn" onclick="processPayment()">
+                Pay Securely
+            </button>
+
+            <button class="wa-btn" onclick="checkoutWhatsApp()">
+                Order on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                name: "Besan Ladoo",
+                category: "Sweets",
+                price: 450,
+                description: "Melt-in-the-mouth ladoos made with roasted gram flour and pure ghee.",
+                image: "https://images.unsplash.com/photo-1605196560544-5f6c5d6a3b3a?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Motichoor Ladoo",
+                category: "Sweets",
+                price: 500,
+                description: "Soft, fragrant and delicately sweet traditional ladoos.",
+                image: "https://images.unsplash.com/photo-1605196560544-5f6c5d6a3b3a?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Kaju Katli",
+                category: "Sweets",
+                price: 650,
+                description: "Rich cashew fudge finished with a delicate silver leaf.",
+                image: "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Masala Chakli",
+                category: "Snacks",
+                price: 280,
+                description: "Crispy spiral snacks with a balanced blend of spices.",
+                image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Namak Para",
+                category: "Snacks",
+                price: 240,
+                description: "Crisp, savoury bites perfect with evening tea.",
+                image: "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Traditional Chivda",
+                category: "Snacks",
+                price: 260,
+                description: "Light, crunchy flattened rice tossed with nuts and spices.",
+                image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Mango Pickle",
+                category: "Pickles",
+                price: 320,
+                description: "Tangy raw mango pickle prepared with aromatic Indian spices.",
+                image: "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Lemon Pickle",
+                category: "Pickles",
+                price: 290,
+                description: "A zesty homemade pickle with bold and bright flavours.",
+                image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Garam Masala",
+                category: "Spices",
+                price: 220,
+                description: "A fragrant house blend for curries, pulao and everyday cooking.",
+                image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=700&q=85"
+            },
+            {
+                name: "Desi Ghee",
+                category: "Ghee",
+                price: 1300,
+                description: "Pure golden ghee with a rich aroma and traditional taste.",
+                image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=85"
+            }
+        ];
+
+        let cart = [];
+        let selectedPayment = "upi";
+
+        function renderProducts(category = "All") {
+            const grid = document.getElementById("productGrid");
+
+            const filteredProducts = category === "All"
+                ? products
+                : products.filter(product => product.category === category);
+
+            grid.innerHTML = filteredProducts.map((product, index) => `
+                <article class="product-card">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    <div class="product-content">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-bottom">
+                            <span class="price">₹${product.price}</span>
+                            <button class="add-btn"
+                                onclick="addToCart(${products.indexOf(product)})">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join("");
+
+            document.querySelectorAll(".filter-btn").forEach(button => {
+                button.classList.toggle(
+                    "active",
+                    button.textContent.includes(category) ||
+                    (category === "All" && button.textContent.includes("All"))
+                );
+            });
+        }
+
+        function filterProducts(category) {
+            renderProducts(category);
+            document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function addToCart(productIndex) {
+            const product = products[productIndex];
+            const existing = cart.find(item => item.name === product.name);
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById("cartItems");
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            document.getElementById("cartCount").textContent = cartCount;
+            document.getElementById("cartTotal").textContent = total;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <p style="color: var(--muted); padding: 20px 0;">
+                        Your cart is currently empty.
+                    </p>
+                `;
+                return;
+            }
+
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <small>₹${item.price} × ${item.quantity}</small>
+                    </div>
+                    <div>
+                        <button class="remove-btn" onclick="decreaseQuantity(${index})">−</button>
+                        <button class="remove-btn" onclick="increaseQuantity(${index})">+</button>
+                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            updateCart();
+        }
+
+        function decreaseQuantity(index) {
+            cart[index].quantity--;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            updateCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function openCart() {
+            document.getElementById("cartModal").style.display = "flex";
+            updateCart();
+        }
+
+        function closeCart() {
+            document.getElementById("cartModal").style.display = "none";
+        }
+
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.getElementById("upiBox").style.display =
+                method === "upi" ? "block" : "none";
+        }
+
+        function processPayment() {
+            if (cart.length === 0) {
+                alert("Please add at least one product to your cart.");
+                return;
+            }
+
+            const total = cart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+            );
+
+            if (selectedPayment === "upi") {
+                alert(`UPI payment selected for ₹${total}. Connect this button to your payment gateway.`);
+            } else {
+                alert(`WhatsApp Pay selected for ₹${total}. Connect this button to your payment gateway.`);
+            }
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Please add at least one product to your cart.");
+                return;
+            }
+
+            let message = "Hello Swaad Ghar! I would like to place an order:%0A%0A";
+
+            cart.forEach(item => {
+                message += `${item.name} × ${item.quantity} - ₹${item.price * item.quantity}%0A`;
+            });
+
+            const total = cart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0
+            );
+
+            message += `%0ATotal: ₹${total}`;
+            window.open(`https://wa.me/919123456789?text=${message}`, "_blank");
+        }
+
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const isOpen = item.classList.contains("open");
+
+            document.querySelectorAll(".faq-item").forEach(faq => {
+                faq.classList.remove("open");
+            });
+
+            if (!isOpen) {
+                item.classList.add("open");
+            }
+        }
+
+        function toggleMenu() {
+            document.getElementById("navLinks").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("cartModal");
+
+            if (event.target === modal) {
+                closeCart();
+            }
+        };
+
+        renderProducts();
+        updateCart();
+    </script>
+
+</body>
+</html>
